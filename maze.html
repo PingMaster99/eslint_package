@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" href="style-mazing.css">
+        <meta charset="UTF-8">
+        <title>Space Maze</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            let won = false
+            let moving = 'Haz click en el laberinto para jugar'
+            let currentState = 'menu'
+            let mazeWidth = 10
+            let mazeHeight = 10
+            let moves = 0
+            const htmlRoot = document.getElementById('root')
+
+            const Wall = () => <div className="wall" />
+
+            const Goal = () => <div className="goal" />
+
+            const Player = (position) => {
+              const playerStyle = {
+                left: `${position.positionX}px`,
+                top: `${position.positionY}py`,
+              }
+              return <div id="astronaut" className="player" style={playerStyle} />
+            }
+
+            const Empty = () => <div className="empty" />
+
+            const Maze = () => {
+              const [mazeData, setMazeData] = React.useState([])
+              const [playerPos, setPlayerPos] = React.useState({ x: 100, y: 100 })
+
+              React.useEffect(() => {
+                fetch(`http://ubeje.xyz:3001/?type=json&w=${mazeWidth}&h=${mazeHeight}`)
+                  .then((r) => r.json())
+                  .then((r) => setMazeData(r))
+              }, [])
+
+              const handleKeyDown = (event) => {
+                const playerPosition = () => {
+                  for (let i = 0; i < mazeData.length; i += 1) {
+                    const currentRow = mazeData[i]
+                    if (currentRow.indexOf('p') !== -1) {
+                      return [i, currentRow.indexOf('p')]
+                    }
+                  }
+                  return null
+                }
+
+                const playerIndices = playerPosition()
+                if (event.key === 'ArrowRight') {
+                  moves += 1
+                  setPlayerPos((oldPosition) => {
+                    if (mazeData[playerIndices[0]][playerIndices[1] + 1] !== '|' && mazeData[playerIndices[0]][playerIndices[1] + 1] !== '+') {
+                      if (mazeData[playerIndices[0]][playerIndices[1] + 1] === 'g') {
+                        won = true
+                      }
+                      mazeData[playerIndices[0]][playerIndices[1] + 1] = 'p'
+                      mazeData[playerIndices[0]][playerIndices[1]] = ' '
+
+                      return { x: oldPosition.x + 100, y: oldPosition.y }
+                    }
+                    return oldPosition
+                  })
+                }
+                if (event.key === 'ArrowLeft') {
+                  moves += 1
+                  setPlayerPos((oldPosition) => {
+                    if (mazeData[playerIndices[0]][playerIndices[1] - 1] !== '|' && mazeData[playerIndices[0]][playerIndices[1] - 1] !== '+') {
+                      if (mazeData[playerIndices[0]][playerIndices[1] - 1] === 'g') {
+                        won = true
+                      }
+                      mazeData[playerIndices[0]][playerIndices[1] - 1] = 'p'
+                      mazeData[playerIndices[0]][playerIndices[1]] = ' '
+
+                      return { x: oldPosition.x - 100, y: oldPosition.y }
+                    }
+                    return oldPosition
+                  })
+                }
+                if (event.key === 'ArrowUp') {
+                  moves += 1
+                  setPlayerPos((oldPosition) => {
+                    if (mazeData[playerIndices[0] - 1][playerIndices[1]] !== '-' && mazeData[playerIndices[0] - 1][playerIndices[1]] !== '+') {
+                      if (mazeData[playerIndices[0] - 1][playerIndices[1]] === 'g') {
+                        won = true
+                      }
+                      mazeData[playerIndices[0] - 1][playerIndices[1]] = 'p'
+                      mazeData[playerIndices[0]][playerIndices[1]] = ' '
+
+                      return { x: oldPosition.x, y: oldPosition.y - 100 }
+                    }
+                    return oldPosition
+                  })
+                }
+
+                if (event.key === 'ArrowDown') {
+                  moves += 1
+                  setPlayerPos((oldPosition) => {
+                    if (mazeData[playerIndices[0] + 1][playerIndices[1]] !== '-' && mazeData[playerIndices[0] + 1][playerIndices[1]] !== '+') {
+                      if (mazeData[playerIndices[0] + 1][playerIndices[1]] === 'g') {
+                        won = true
+                      }
+                      mazeData[playerIndices[0] + 1][playerIndices[1]] = 'p'
+                      mazeData[playerIndices[0]][playerIndices[1]] = ' '
+
+                      return { x: oldPosition.x, y: oldPosition.y + 100 }
+                    }
+                    return oldPosition
+                  })
+                }
+
+                moving = `Movimientos: ${moves}`
+              }
+
+              if (currentState === 'menu') {
+                return (
+                  <div className="menu">
+                    <h1 className="main-title">Space Maze</h1>
+                    <h3>Si lees esto, se recomienda hacer zoom hacia afuera en el navegador</h3>
+                    <h2>Alto del laberinto</h2>
+                    <input aria-label="alto" id="height" type="number" defaultValue="10" />
+                    <h2>Ancho del laberinto</h2>
+                    <input aria-label="ancho" id="width" type="number" defaultValue="10" />
+                    <button
+                      type="button"
+                      className="play-button"
+                      onClick={() => {
+                        won = false
+                        currentState = 'maze'
+                        moves = 0
+                        mazeHeight = document.getElementById('height').value
+                        mazeWidth = document.getElementById('width').value
+                        setPlayerPos(() => ({ x: 100, y: 100 }))
+                        fetch(`http://ubeje.xyz:3001/?type=json&w=${mazeWidth}&h=${mazeHeight}`)
+                          .then((r) => r.json())
+                          .then((r) => setMazeData(r))
+                      }}
+                    >
+                      Jugar
+                    </button>
+                  </div>
+                )
+              }
+              if (!won) {
+                return (
+                  <div role="button" tabIndex="0" onKeyDown={handleKeyDown} className="maze-container">
+                    {mazeData.map((row) => (
+                      <div className="row-styles">
+                        {row.map((cell) => {
+                          switch (cell) {
+                            case 'p':
+                              return [<Player positionX={playerPos.x} positionY={playerPos.y} />,
+                                <Empty />]
+                            case 'g':
+                              return <Goal />
+                            case ' ':
+                              return <Empty />
+                            default:
+                              return <Wall />
+                          }
+                        })}
+                      </div>
+                    ))}
+
+                    <h2>{moving}</h2>
+                  </div>
+                )
+              }
+              return (
+                <div className="won-game">
+                  <h1>¡Felicidades, has ganado!</h1>
+                  <h2>
+                    Movimientos realizados:
+                    { moves }
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      currentState = 'menu'
+                      setMazeData([])
+                    }}
+                  >
+                    Menú
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPlayerPos(() => ({ x: 100, y: 100 }))
+                      won = false
+                      moves = 0
+                      fetch(`http://ubeje.xyz:3001/?type=json&w=${mazeWidth}&h=${mazeHeight}`)
+                        .then((r) => r.json())
+                        .then((r) => setMazeData(r))
+                    }}
+                  >
+                    ¡Otro laberinto!
+                  </button>
+                </div>
+
+              )
+            }
+            ReactDOM.render(
+              <Maze />,
+              htmlRoot,
+            )
+        </script>
+    </body>
+</html>
+

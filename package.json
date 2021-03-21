@@ -1,0 +1,37 @@
+{
+  "name": "lab_linter",
+  "version": "1.0.0",
+  "description": "Eslint in a package",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint maze.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PingMaster99/eslint_package.git"
+  },
+  "keywords": [
+    "eslint",
+    "javascript",
+    "react",
+    "node",
+    "npm"
+  ],
+  "author": "PingMaster99",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PingMaster99/eslint_package/issues"
+  },
+  "homepage": "https://github.com/PingMaster99/eslint_package#readme",
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "dependencies": {
+    "eslint-plugin-html": "^6.1.2"
+  }
+}

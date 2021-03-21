@@ -1,0 +1,120 @@
+.wall {
+    width: 100px;
+    height: 100px;
+    background-color: #ffff00;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ff8000'/%3E%3Cstop offset='1' stop-color='%23ff8000' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2300ff19'/%3E%3Cstop offset='1' stop-color='%2300ff19' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%239900ff'/%3E%3Cstop offset='1' stop-color='%239900ff' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ffff00'/%3E%3Cstop offset='1' stop-color='%23ffff00' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FF0000'/%3E%3Cstop offset='1' stop-color='%23FF0000' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%230CF'/%3E%3Cstop offset='1' stop-color='%230CF' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 80%;
+}
+
+.goal {
+    width: 100px;
+    height: 100px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    opacity: 70%;
+}
+
+.player {
+    width: 100px;
+    height: 100px;
+    position:absolute;
+    background: transparent url("./images/astrosprites.png") 0 0 no-repeat;
+    animation: walk 1s steps(3) infinite;
+}
+
+@keyframes walk {
+    100% {background-position: -300px 0}
+}
+
+.empty {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    opacity: 30%;
+}
+
+
+.row-styles {
+    display: flex;
+}
+
+.maze-container {
+    position: relative;
+}
+
+
+
+.menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.won-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1686%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='url(%23SvgjsLinearGradient1687)'%3e%3c/rect%3e%3cpath d='M1655.365%2c628.596C1684.97%2c629.214%2c1716.04%2c618.587%2c1729.948%2c592.445C1743.268%2c567.409%2c1730.065%2c539%2c1716.191%2c514.267C1701.883%2c488.761%2c1684.61%2c459.323%2c1655.365%2c459.488C1626.267%2c459.652%2c1609.419%2c489.277%2c1595.715%2c514.946C1583.074%2c538.624%2c1573.511%2c565.676%2c1585.985%2c589.442C1599.212%2c614.644%2c1626.909%2c628.002%2c1655.365%2c628.596' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1144.328%2c1200.819C1247.652%2c1200.052%2c1332.064%2c1123.483%2c1378.608%2c1031.233C1420.632%2c947.941%2c1410.295%2c850.097%2c1361.352%2c770.673C1314.906%2c695.302%2c1232.782%2c654.787%2c1144.328%2c651.054C1047.82%2c646.981%2c944.355%2c669.053%2c893.073%2c750.91C839.196%2c836.91%2c854.466%2c946.154%2c903.947%2c1034.757C954.84%2c1125.889%2c1039.951%2c1201.594%2c1144.328%2c1200.819' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1458.07 930.17 a201.63 201.63 0 1 0 403.26 0 a201.63 201.63 0 1 0 -403.26 0z' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M534.09 243.89 a208.86 208.86 0 1 0 417.72 0 a208.86 208.86 0 1 0 -417.72 0z' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1000.73 20.21 a291.53 291.53 0 1 0 583.06 0 a291.53 291.53 0 1 0 -583.06 0z' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M289.204%2c397.886C356.246%2c400.729%2c433.906%2c397.888%2c467.892%2c340.029C502.122%2c281.755%2c469.239%2c210.845%2c432.325%2c154.233C399.515%2c103.915%2c349.169%2c69.536%2c289.204%2c65.987C221.797%2c61.998%2c147.847%2c77.286%2c113.389%2c135.357C78.426%2c194.279%2c96.846%2c268.984%2c134.97%2c325.911C168.806%2c376.435%2c228.452%2c395.31%2c289.204%2c397.886' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M182.152%2c723.587C237.013%2c726.381%2c295.621%2c712.275%2c324.547%2c665.576C354.728%2c616.849%2c350.598%2c551.998%2c317.356%2c505.305C288.157%2c464.29%2c232.499%2c465.395%2c182.152%2c465.562C132.242%2c465.727%2c75.368%2c464.141%2c48.491%2c506.196C20.256%2c550.375%2c35.379%2c607.586%2c62.84%2c652.25C88.852%2c694.557%2c132.552%2c721.061%2c182.152%2c723.587' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1384.56 421.1 a242.78 242.78 0 1 0 485.56 0 a242.78 242.78 0 1 0 -485.56 0z' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1358.718%2c816.596C1419.306%2c816.673%2c1457.084%2c758.592%2c1487.396%2c706.132C1517.734%2c653.627%2c1546.093%2c593.56%2c1518.915%2c539.351C1489.503%2c480.686%2c1424.34%2c450.116%2c1358.718%2c449.473C1291.903%2c448.819%2c1222.865%2c476.391%2c1192.994%2c536.16C1165.241%2c591.691%2c1199.025%2c652.359%2c1230.609%2c705.804C1261.394%2c757.899%2c1298.207%2c816.519%2c1358.718%2c816.596' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M772.48 354.14 a231.77 231.77 0 1 0 463.54 0 a231.77 231.77 0 1 0 -463.54 0z' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M201.72 1023.88 a261.35 261.35 0 1 0 522.7 0 a261.35 261.35 0 1 0 -522.7 0z' fill='rgba(255%2c 255%2c 255%2c 0.12)' class='triangle-float3'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1686'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1687'%3e%3cstop stop-color='rgba(0%2c 30%2c 61%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(75%2c 80%2c 75%2c 1)' offset='0.36'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 0%2c 0%2c 1)' offset='0.65'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 0%2c 0%2c 1)' offset='0.88'%3e%3c/stop%3e%3cstop stop-color='rgba(49%2c 59%2c 73%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    margin: 0;
+    font-size: 10em;
+    color: white;
+    font-family: "Microsoft JhengHei UI Light", serif;
+}
+h2 {
+    font-size: 7em;
+    padding-top: 1em;
+    margin: 0;
+    color: cornsilk;
+    font-family: "Microsoft JhengHei UI Light", serif;
+}
+
+h3 {
+    color: darkblue;
+    font-size: 1em;
+    font-family: "Microsoft JhengHei UI Light", serif;
+    margin: 0;
+
+    padding-top: 0.5em;
+}
+input {
+    padding: 0;
+    background-color: #3F3F3F3F;
+    color: white;
+    font-size: 7em;
+    width: 80%;
+    text-align: center;
+}
+
+button {
+    width: 50%;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 10px;
+    font-size: 5em;
+    color: white;
+
+    background: #00FF3B1F
+}
+
+button:focus {
+    background: #003BFF1F;
+    color: lavenderblush;
+    border-radius: 10%;
+}
